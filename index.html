@@ -114,12 +114,12 @@
   <textarea rows="8" cols="80" id="output" readonly="readonly"></textarea>
 
   <xml id="toolbox" style="display: none">
-    <category name="基本" colour="%{BKY_BASICS_HUE}">
+    <category name="기본" colour="%{BKY_BASICS_HUE}">
       <block type="basics_setup"></block>
       <block type="basics_loop"></block>
       <block type="basics_mouse_pressed"></block>
     </category>
-    <category name="図形" colour="%{BKY_FIGURES_HUE}">
+    <category name="" colour="%{BKY_FIGURES_HUE}">
       <block type="figures_shape">
         <value name="X">
           <shadow type="math_number">
@@ -179,7 +179,7 @@
         </value>
       </block>
     </category>
-    <category name="ループ" colour="%{BKY_LOOPS_HUE}">
+    <category name="" colour="%{BKY_LOOPS_HUE}">
 <!--
       <block type="controls_repeat_ext">
         <value name="TIMES">
@@ -223,7 +223,7 @@
       <block type="controls_flow_statements"></block>
 -->
     </category>
-    <category name="条件" colour="%{BKY_LOGIC_HUE}">
+    <category name="상태" colour="%{BKY_LOGIC_HUE}">
       <block type="controls_if">
         <value name="IF0">
           <shadow type="logic_boolean"></shadow>
@@ -251,7 +251,7 @@
       <block type="logic_boolean"></block>
       <block type="basics_builtin_logic_var"></block>
     </category>
-    <category name="数値" colour="%{BKY_MATH_HUE}">
+    <category name="숫자" colour="%{BKY_MATH_HUE}">
       <block type="math_number"></block>
       <block type="math_arithmetic">
         <value name="A">
@@ -303,7 +303,7 @@
         <field name="VAR">MOUSE_X</field>
       </block>
     </category>
-    <category name="色" colour="%{BKY_COLOUR_HUE}">
+    <category name="색" colour="%{BKY_COLOUR_HUE}">
       <block type="colour_picker"></block>
 <!--
       <block type="colour_random"></block>
@@ -377,8 +377,8 @@
 -->
     </category>
     <sep></sep>
-    <category name="変数" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
-    <category name="配列" colour="%{BKY_LISTS_HUE}">
+    <category name="변수" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
+    <category name="" colour="%{BKY_LISTS_HUE}">
       <block type="lists_repeat_simple">
         <value name="NUM">
           <shadow type="math_number">
@@ -403,9 +403,9 @@
         </value>
       </block>
     </category>
-    <category name="関数" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
+    <category name="함수" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
     <sep></sep>
-    <category name="文字列" colour="%{BKY_TEXTS_HUE}">
+    <category name="문자열" colour="%{BKY_TEXTS_HUE}">
       <block type="text"></block>
       <block type="text_join"></block>
       <!--
@@ -522,27 +522,27 @@
       stopSketch();
     }
 
-    /** ブロックを全消去 */
+    /** 블록 모두 지우기 */
     function clearBlocks() {
-      if (window.confirm('プログラムを消去してよいですか?')) {
+      if (window.confirm('프로그램을 지울수 있습니까?')) {
         workspace.clear();
         Blockly.Xml.domToWorkspace(document.getElementById('clearBlocks'),
                                    workspace);
       }
     }
 
-    /** ローカルストレージに保存するときのキー接頭辞 */
+    /** 로컬 스토리지에 저장할 때 키 접두사 */
     var savedBlockPrefix = 'bky.prc.saved.';
 
-    /** ブロックを保存 */
+    /** 블록 저장 */
     function saveBlocks() {
       if ('localStorage' in window) {
         var name = null;
         while (!name) {
-          name = window.prompt('プログラム名を入力してください');
+          name = window.prompt프로그램이름을입력하세요('');
           if (!name) { return; } // ignore if empty
           if (window.localStorage[savedBlockPrefix + name]) {
-            if (! window.confirm(name + ' は存在します。上書きしますか?')) {
+            if (! window.confirm(name + ' 존재합니다. 덮어쓰시겠습니까?')) {
               name = null;
             }
           }
@@ -552,7 +552,7 @@
         window.localStorage.setItem(name, Blockly.Xml.domToText(xml));
       }
     }
-    /** ブロックを復元 */
+    /** 블록 복원 */
     function restoreBlocks() {
       if ('localStorage' in window) {
         var modal = document.getElementById('restoreModal');
@@ -565,7 +565,7 @@
           }
         }
         if (items.length == 0) {
-          window.alert('保存されているプログラムはありません');
+          window.alert('저장된 프로그램이 없습니다.');
           return;
         }
         items.sort();
